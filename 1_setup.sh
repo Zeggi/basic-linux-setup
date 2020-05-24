@@ -28,7 +28,7 @@ restore="\033[0m"                                           ##########
 ###########################################################################
 ### display header                                                      ###
 echo -e "${magenta}"                                                    ###
-echo ".::BASIC-LINUX-SETUP::. V2.1 - mainly for (K)ubuntu focal/groovy" ###
+echo ".::BASIC-LINUX-SETUP::. V2.1 - mainly for (K)ubuntu groovy"       ###
 echo -e "${restore}"                                                    ###
 ###########################################################################
 ####### START #############################################################
