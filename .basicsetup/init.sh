@@ -18,6 +18,17 @@ echo 1 > /proc/sys/vm/overcommit_memory
 echo fq_codel > /proc/sys/net/core/default_qdisc
 sysctl net.ipv4.tcp_fastopen=3
 sysctl net.core.busy_read=50
+sysctl net.ipv4.tcp_slow_start_after_idle=0
+
+sysctl -w kernel.sched_scaling_enable=1
+echo 1 > /proc/sys/kernel/sched_scaling_enable
+echo 2 > /proc/sys/kernel/sched_tunable_scaling
+#echo 0 > /proc/sys/kernel/sched_boost
+echo 1 > /proc/sys/kernel/sched_child_runs_first
+echo 1000000 > /proc/sys/kernel/sched_min_granularity_ns
+echo 2000000 > /proc/sys/kernel/sched_wakeup_granularity_ns
+#echo 980000 > /proc/sys/kernel/sched_rt_runtime_us
+echo 40000 > /proc/sys/kernel/sched_latency_ns
 
 ###### CONFIGURE SCHEDULER
 ################################
@@ -67,6 +78,34 @@ sysctl vm.dirty_ratio=80
 sysctl vm.dirty_background_ratio=5
 sysctl vm.dirty_expire_centisecs=12000
 sysctl vm.watermark_scale_factor=200
+
+# enable recycling and fast reuse of TCP TIME_WAIT sockets
+sysctl net.ipv4.tcp_tw_recycle=1
+sysctl net.ipv4.tcp_tw_reuse=1
+
+# Provide adequate buffer memory.
+# rmem_max and wmem_max are TCP max buffer size
+# settable with setsockopt(), in bytes
+# tcp_rmem and tcp_wmem are per socket in bytes.
+# tcp_mem is for all TCP streams, in 4096-byte pages.
+# The following are suggested on IBM's
+# High Performance Computing page
+sysctl net.core.rmem_max=16777216
+sysctl net.core.wmem_max=16777216
+sysctl net.core.rmem_default=16777216
+sysctl net.core.wmem_default=16777216
+sysctl net.ipv4.tcp_rmem=4096 87380 16777216
+sysctl net.ipv4.tcp_wmem=4096 87380 16777216
+# This server might have 200 clients simultaneously, so:
+#   max(tcp_wmem) * 2 * 200 / 4096
+sysctl net.ipv4.tcp_mem=1638400 1638400 1638400
+
+# Disable TCP SACK (TCP Selective Acknowledgement),
+# DSACK (duplicate TCP SACK), and FACK (Forward Acknowledgement)
+sysctl net.ipv4.tcp_sack=0
+sysctl net.ipv4.tcp_dsack=0
+sysctl net.ipv4.tcp_fack=0
+
 ### IMPROVE SYSTEM MEMORY MANAGEMENT ###
 # Increase size of file handles and inode cache
 sysctl fs.file-max=2097152
