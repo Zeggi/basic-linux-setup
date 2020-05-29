@@ -12,3 +12,6 @@ deb http://apt.llvm.org/unstable/ llvm-toolchain main
 deb-src http://apt.llvm.org/unstable/ llvm-toolchain main
 #deb http://apt.llvm.org/focal/ llvm-toolchain-focal main
 #deb-src http://apt.llvm.org/focal/ llvm-toolchain-focal main
+
+#Nearest mirror
+#https://http.kali.org/README.mirrorlist
