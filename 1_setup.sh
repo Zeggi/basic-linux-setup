@@ -370,9 +370,9 @@ sudo aptitude -f install -y libd3dadapter9-mesa libd3dadapter9-mesa-dev libegl-m
 sudo aptitude -f install -y subversion g++ zlib1g-dev build-essential git python python3 python3-distutils libncurses5-dev gawk gettext unzip file libssl-dev wget libelf-dev ecj fastjar java-propose-classpath
 
 ### kali full packages
-sudo aptitude -f install -y kali-tools-exploitation kali-tools-hardware kali-tools-wireless kali-tools-rfid kali-tools-fuzzing kali-tools-reporting kali-tools-sdr kali-tools-bluetooth kali-tools-social-engineering kali-tools-crypto-stego kali-tools-database kali-tools-voip kali-tools-802-11 kali-tools-post-exploitation kali-tools-sniffing-spoofing kali-tools-top10 kali-tools-reverse-engineering kali-tools-web kali-tools-vulnerability kali-tools-forensics kali-tools-information-gathering kali-tools-windows-resources
-sudo apt remove -y lime-forensics-dkms
-sudo aptitude -f install -y routersploit
+#sudo aptitude -f install -y kali-tools-exploitation kali-tools-hardware kali-tools-wireless kali-tools-rfid kali-tools-fuzzing kali-tools-reporting kali-tools-sdr kali-tools-bluetooth kali-tools-social-engineering kali-tools-crypto-stego kali-tools-database kali-tools-voip kali-tools-802-11 kali-tools-post-exploitation kali-tools-sniffing-spoofing kali-tools-top10 kali-tools-reverse-engineering kali-tools-web kali-tools-vulnerability kali-tools-forensics kali-tools-information-gathering kali-tools-windows-resources
+#sudo apt remove -y lime-forensics-dkms
+#sudo aptitude -f install -y routersploit
 ### make sure all is set up right
 sudo dpkg --configure -a && sudo apt update && sudo apt -f full-upgrade -y && sudo apt -f --fix-broken install -y && sudo apt -f --fix-missing install -y && sudo apt autoremove -y
 
@@ -437,10 +437,10 @@ apt update
 
 s/old-text/new-text/g
 ### .exe files for wine
-mkdir -p ~/wine && cd ~/wine
-wget https://winscp.net/download/files/202005080143368dd0551d11a66577d4727edb0182a2/WinSCP-5.17.5-Portable.zip
-unzip -o WinSCP*
-rm -rf license* readme* WinSCP*.zip WinSCP*.com
+#mkdir -p ~/wine && cd ~/wine
+#wget https://winscp.net/download/files/202005080143368dd0551d11a66577d4727edb0182a2/WinSCP-5.17.5-Portable.zip
+#unzip -o WinSCP*
+#rm -rf license* readme* WinSCP*.zip WinSCP*.com
 
 
 ### usb stuff
@@ -451,7 +451,7 @@ sudo apt -f install --install-recommends -y mkusb mkusb-nox usb-pack-efi
 ### extra .deb packages
 cd $source
 #
-wget https://github.com/balena-io/etcher/releases/download/v1.5.89/balena-etcher-electron_1.5.89_amd64.deb
+wget https://github.com/balena-io/etcher/releases/download/v1.5.94/balena-etcher-electron_1.5.94_amd64.deb
 sudo dpkg -i balena-etcher*
 sudo apt -f install -y && sudo apt --fix-broken install -y
 rm -rf balena-etcher*
@@ -491,6 +491,10 @@ sudo dpkg -i GitHubDesktop*
 sudo apt -f install -y && sudo apt --fix-broken install -y
 rm -rf GitHubDesktop*
 
+wget https://phoronix-test-suite.com/releases/repo/pts.debian/files/phoronix-test-suite_9.6.1_all.deb
+sudo dpkg -i phoronix*
+sudo apt -f install -y && sudo apt --fix-broken install -y
+rm -rf phoronix*
 ### ensure packages are well installed
 sudo apt update && sudo apt -f install -y && sudo apt --fix-broken install -y
 
