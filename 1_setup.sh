@@ -106,6 +106,8 @@ sudo aptitude -f install -y rsync
 
 chmod +x init.sh
 sudo \cp init.sh /init.sh
+cd / && sudo ./init.sh
+cd $basicsetup
 if grep -q "@reboot root /init.sh" /etc/crontab
 then
 echo "Flag exists"
