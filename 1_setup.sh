@@ -417,7 +417,7 @@ sudo apt update
 
 ### extra thanas packages
 ### some listed purposefully seperate to avoid future conflicts or to distinguish packages from unique repo's or ppa's
-sudo aptitude -f install -y audacity diffuse gimp kodi f2fs-tools rt-tests uget net-tools aircrack-ng wine32 wine shellcheck gnome-disk-utility putty
+sudo aptitude -f install -y audacity vulkan-tools diffuse gimp kodi f2fs-tools rt-tests uget net-tools aircrack-ng wine32 wine shellcheck gnome-disk-utility putty
 sudo aptitude -f install -y kodi-pvr-hts kodi-x11 kodi-wayland
 
 ### kde extras from debian
